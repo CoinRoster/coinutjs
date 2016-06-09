@@ -1,0 +1,32 @@
+{
+  "name": "coinutjs",
+  "version": "0.1.0",
+  "description": "Unofficial JavaScript API for coinut.com",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "babel src -d dist",
+    "prepublish": "npm run build",
+    "test": "mocha --compilers js:babel-register"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CoinRoster/coinutjs.git"
+  },
+  "keywords": [
+    "bitcoin",
+    "coinut",
+    "finance",
+    "javascript"
+  ],
+  "author": "Ashwin Balamohan <abmohan@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CoinRoster/coinutjs/issues"
+  },
+  "homepage": "https://github.com/CoinRoster/coinutjs#readme",
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-preset-es2015": "^6.9.0",
+    "mocha": "^2.5.3"
+  }
+}
