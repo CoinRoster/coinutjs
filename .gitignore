@@ -1,2 +1,25 @@
+git ### Node ###
+# Packages
 node_modules
+bower_components
+
+# Logs
+logs
+*.log
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Coverage directory used by tools like istanbul
+coverage
+
+# node-waf configuration
+.lock-wscript
+
+# OS X
+.DS_Store
+
+# Build folders
 dist
