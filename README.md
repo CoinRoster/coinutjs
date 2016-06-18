@@ -1,5 +1,8 @@
 # CoinutJS
 
+[![CircleCI](https://circleci.com/gh/CoinRoster/coinutjs.svg?style=shield)](https://circleci.com/gh/CoinRoster/coinutjs)
+[![Coverage Status](https://coveralls.io/repos/github/CoinRoster/coinutjs/badge.svg?branch=master)](https://coveralls.io/github/CoinRoster/coinutjs?branch=master)
+
 Hello, world of bitcoin!
 
 This is an unofficial API for coinut.com
