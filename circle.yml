@@ -3,3 +3,6 @@ machine:
     America/Toronto
   node:
     version: v6.1.0
+test:
+  post:
+    - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js

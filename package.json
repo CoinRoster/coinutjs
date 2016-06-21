@@ -6,10 +6,14 @@
   "scripts": {
     "build": "babel lib -d dist --source-maps inline",
     "clean": "rimraf ./dist ./coverage",
+    "coverage": "babel-node node_modules/.bin/isparta cover _mocha",
+    "dev": "mocha --compilers js:babel-register --watch",
     "lint": "eslint --color lib/**/*.js test/**/*.js",
+    "precoverage": "rimraf ./coverage",
     "prepublish": "npm run build",
-    "pretest": "npm run build && npm run lint",
-    "test": "babel-node node_modules/.bin/isparta cover _mocha"
+    "prebuild": "rimraf ./dist",
+    "pretest": "npm run lint",
+    "test": "npm run coverage"
   },
   "files": [
     "lib/"
@@ -25,7 +29,7 @@
     "javascript"
   ],
   "author": "Ashwin Balamohan <abmohan@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/CoinRoster/coinutjs/issues"
   },
@@ -40,10 +44,18 @@
     "babel-register": "^6.9.0",
     "chai": "^3.5.0",
     "chai-as-promised": "^5.3.0",
+    "coveralls": "^2.11.9",
     "eslint": "^2.12.0",
     "isparta": "^4.0.0",
     "istanbul": "^0.4.3",
     "mocha": "^2.5.3",
-    "rimraf": "^2.5.2"
+    "mocha-lcov-reporter": "^1.2.0",
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.4"
+  },
+  "dependencies": {
+    "core-js": "^2.4.0",
+    "node-uuid": "^1.4.7",
+    "request-promise": "^3.0.0"
   }
 }
