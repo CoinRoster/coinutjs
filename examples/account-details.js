@@ -31,3 +31,9 @@ coinut.getOrders()
     console.log('Orders:', orders);
   })
   .catch(errorHandler);
+
+coinut.getPositions()
+  .then(positions => {
+    console.log('Positions:', positions);
+  })
+  .catch(errorHandler);

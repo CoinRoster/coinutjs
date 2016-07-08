@@ -118,7 +118,7 @@ describe('Coinut', () => {
       rpStub = sinon.stub(rp, 'post');
       rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
 
-      // make API request call
+      // API request call
       ordersP = coinut.getOrders();
     });
 
@@ -135,5 +135,53 @@ describe('Coinut', () => {
     it('should return an orders array', () => {
       return expect(ordersP).to.eventually.deep.equal(mockResponseData);
     });
+
   });
+
+  describe('Coinut.getPositions', () => {
+    const mockResponseData = [{
+      'status': 'POSITION_OPEN',
+      'put_call': 'CALL',
+      'close_time': 0,
+      'expiry_time': 1423670400,
+      'open_time': 1423664943,
+      'timestamp': 1423664943,
+      'price': '0.05000000',
+      'deriv_type': 'VANILLA_OPTION',
+      'side': 'BUY',
+      'amount': 1,
+      'asset': 'BTCUSD',
+      'strike': '222.00000000',
+      'close_price': '0.00000000',
+      'id': 'b5ae7d46ab1fc24e5b08ab505e803ac15aba'
+    }];
+
+    let positionsP;
+    let rpStub;
+
+    beforeEach(() => {
+      // return stubbed response instead of actual POST call to Coinut
+      rpStub = sinon.stub(rp, 'post');
+      rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+      // make API request call
+      positionsP = coinut.getPositions();
+    });
+
+    afterEach(() => {
+      // restore stubbed function
+      rp.post.restore();
+    });
+
+    it('should be a function', () => {
+      expect(coinut.getPositions).to.exist;
+      expect(coinut.getPositions).to.be.a('function');
+    });
+
+    it('should return a positions array', () => {
+      return expect(positionsP).to.eventually.deep.equal(mockResponseData);
+    });
+ });
+
+
 });
