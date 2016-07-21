@@ -24,8 +24,14 @@ coinut.getExpiry_Time('VANILLA_OPTION', 'BTCUSD', 'CALL' )
   })
   .catch(errorHandler);
 
-coinut.getAssets()
+coinut.getAssets('VANILLA_OPTION')
   .then(assets => {
-    console.log('Assets:', assets);
+    console.log('VANILLA Assets:', assets);
+  })
+  .catch(errorHandler);
+
+coinut.getAssets('BINARY_OPTION')
+  .then(assets => {
+    console.log('BINARY Assets:', assets);
   })
   .catch(errorHandler);
