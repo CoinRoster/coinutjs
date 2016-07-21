@@ -52,6 +52,7 @@ coinut.getStrike_Prices('BINARY_OPTION', 'BTCUSD', 1469908800 )
   })
   .catch(errorHandler);
 
+//Tick Examples
 coinut.getTick('BTCUSD')
   .then(tick => {
     console.log('TICK USD:', tick);
@@ -61,5 +62,18 @@ coinut.getTick('BTCUSD')
 coinut.getTick('BTCCNY')
   .then(tick => {
     console.log('TICK CNY:', tick);
+  })
+  .catch(errorHandler);
+
+// Orderbook Examples
+coinut.getOrderbook('BINARY_OPTION', 'BTCUSD', 1469908800, '250', 'CALL' )
+  .then(orderbook => {
+    console.log('Orderbook (1):', orderbook);
+  })
+  .catch(errorHandler);
+
+coinut.getOrderbook('BINARY_OPTION', 'BTCUSD', 1469908800, '250', 'PUT' )
+  .then(orderbook => {
+    console.log('Orderbook (2):', orderbook);
   })
   .catch(errorHandler);

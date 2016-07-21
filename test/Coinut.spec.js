@@ -273,4 +273,49 @@ describe('Coinut.getTick', () => {
   });
 });
 
+describe('Coinut.getOrderbook', () => {
+  const mockResponseData = {
+  "ask":[],
+  "bid":[
+      {
+      "amount":10,
+      "price":"0.10000000"
+      },
+      {
+      "amount":120,
+      "price":"0.00300000"
+      },
+      {
+      "amount":20,
+      "price":"0.00100000"
+      }
+      ]
+    }
+  let orderbookP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    orderbookP = coinut.getOrderbook();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getOrderbook).to.exist;
+    expect(coinut.getOrderbook).to.be.a('function');
+  });
+
+  it('should return an array of Tick data', () => {
+    return expect(orderbookP).to.eventually.deep.equal(mockResponseData);
+  });
+});
+
 });
