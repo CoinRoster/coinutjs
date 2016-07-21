@@ -51,3 +51,15 @@ coinut.getStrike_Prices('BINARY_OPTION', 'BTCUSD', 1469908800 )
     console.log('Strike Price (BINARY):', strike_prices);
   })
   .catch(errorHandler);
+
+coinut.getTick('BTCUSD')
+  .then(tick => {
+    console.log('TICK USD:', tick);
+  })
+  .catch(errorHandler);
+
+coinut.getTick('BTCCNY')
+  .then(tick => {
+    console.log('TICK CNY:', tick);
+  })
+  .catch(errorHandler);
