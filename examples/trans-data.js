@@ -18,12 +18,14 @@ const errorHandler = (error) => {
   console.error('Error connecting to Coinut:', error.message);
 };
 
+// Examples for Get Expiry Time
 coinut.getExpiry_Time('VANILLA_OPTION', 'BTCUSD', 'CALL' )
   .then(expiry_time => {
     console.log('Expiry Time:', expiry_time);
   })
   .catch(errorHandler);
 
+//Examples for Get Assets
 coinut.getAssets('VANILLA_OPTION')
   .then(assets => {
     console.log('VANILLA Assets:', assets);
@@ -33,5 +35,19 @@ coinut.getAssets('VANILLA_OPTION')
 coinut.getAssets('BINARY_OPTION')
   .then(assets => {
     console.log('BINARY Assets:', assets);
+  })
+  .catch(errorHandler);
+
+//Examples for Get Strike Prices
+
+coinut.getStrike_Prices('VANILLA_OPTION', 'BTCUSD', 1469908800 )
+  .then(strike_prices => {
+    console.log('Strike Price (VANILLA):', strike_prices);
+  })
+  .catch(errorHandler);
+
+coinut.getStrike_Prices('BINARY_OPTION', 'BTCUSD', 1469908800 )
+  .then(strike_prices => {
+    console.log('Strike Price (BINARY):', strike_prices);
   })
   .catch(errorHandler);

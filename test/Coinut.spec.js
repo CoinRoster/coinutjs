@@ -213,10 +213,10 @@ describe('Coinut', () => {
    });
 });
 
-describe('Coinut.getAssets', () => {
-  const mockResponseData = ["BTCUSD", "BTCCNY", "BTCEUR"];
+describe('Coinut.getStrike_Prices', () => {
+  const mockResponseData = ["2.00000000", "4.00000000", "6.00000000", "8.00000000", "10.00000000"];
 
-  let assetsP;
+  let strike_pricesP;
   let rpStub;
 
   beforeEach(() => {
@@ -225,7 +225,7 @@ describe('Coinut.getAssets', () => {
     rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
 
     // make API request call
-    assetsP = coinut.getAssets();
+    strike_pricesP = coinut.getStrike_Prices();
   });
 
   afterEach(() => {
@@ -234,12 +234,12 @@ describe('Coinut.getAssets', () => {
   });
 
   it('should be a function', () => {
-    expect(coinut.getAssets).to.exist;
-    expect(coinut.getAssets).to.be.a('function');
+    expect(coinut.getStrike_Prices).to.exist;
+    expect(coinut.getStrike_Prices).to.be.a('function');
   });
 
-  it('should return an array of Asset Types', () => {
-    return expect(assetsP).to.eventually.deep.equal(mockResponseData);
+  it('should return an array of Strike Prices', () => {
+    return expect(strike_pricesP).to.eventually.deep.equal(mockResponseData);
   });
 });
 
