@@ -183,5 +183,35 @@ describe('Coinut', () => {
     });
  });
 
+ describe('Coinut.getExpiry_Time', () => {
+   const mockResponseData = [1423656000, 1423670400, 1423684800, 1423699200, 1423713600, 1423728000];
+
+   let expiry_timeP;
+   let rpStub;
+
+   beforeEach(() => {
+     // return stubbed response instead of actual POST call to Coinut
+     rpStub = sinon.stub(rp, 'post');
+     rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+     // make API request call
+     expiry_timeP = coinut.getExpiry_Time();
+   });
+
+   afterEach(() => {
+     // restore stubbed function
+     rp.post.restore();
+   });
+
+   it('should be a function', () => {
+     expect(coinut.getExpiry_Time).to.exist;
+     expect(coinut.getExpiry_Time).to.be.a('function');
+   });
+
+   it('should return an array of Expiry Times', () => {
+     return expect(expiry_timeP).to.eventually.deep.equal(mockResponseData);
+   });
+});
+
 
 });
