@@ -18,24 +18,14 @@ const errorHandler = (error) => {
   console.error('Error connecting to Coinut:', error.message);
 };
 
-coinut.getBalance()
-  .then(responseData => {
-    console.log('Balance:', responseData.balance);
-    console.log('Free Margin:', responseData.free_margin);
-    console.log('Margin:', responseData.margin);
+coinut.getExpiry_Time('VANILLA_OPTION', 'BTCUSD', 'CALL' )
+  .then(expiry_time => {
+    console.log('Expiry Time:', expiry_time);
   })
   .catch(errorHandler);
 
-coinut.getOrders()
-  .then(orders => {
-    console.log('Orders:', orders);
+coinut.getAssets()
+  .then(assets => {
+    console.log('Assets:', assets);
   })
   .catch(errorHandler);
-
-coinut.getPositions()
-  .then(positions => {
-    console.log('Positions:', positions);
-  })
-  .catch(errorHandler);
-
-  
