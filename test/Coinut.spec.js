@@ -213,5 +213,34 @@ describe('Coinut', () => {
    });
 });
 
+describe('Coinut.getStrike_Prices', () => {
+  const mockResponseData = ["2.00000000", "4.00000000", "6.00000000", "8.00000000", "10.00000000"];
+
+  let strike_pricesP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    strike_pricesP = coinut.getStrike_Prices();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getStrike_Prices).to.exist;
+    expect(coinut.getStrike_Prices).to.be.a('function');
+  });
+
+  it('should return an array of Strike Prices', () => {
+    return expect(strike_pricesP).to.eventually.deep.equal(mockResponseData);
+  });
+});
 
 });
