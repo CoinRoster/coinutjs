@@ -213,5 +213,109 @@ describe('Coinut', () => {
    });
 });
 
+describe('Coinut.getStrike_Prices', () => {
+  const mockResponseData = ["2.00000000", "4.00000000", "6.00000000", "8.00000000", "10.00000000"];
+
+  let strike_pricesP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    strike_pricesP = coinut.getStrike_Prices();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getStrike_Prices).to.exist;
+    expect(coinut.getStrike_Prices).to.be.a('function');
+  });
+
+  it('should return an array of Strike Prices', () => {
+    return expect(strike_pricesP).to.eventually.deep.equal(mockResponseData);
+  });
+});
+
+describe('Coinut.getTick', () => {
+  const mockResponseData = {"timestamp": 1423645692104470, "symbol": "BTCUSD", "tick": "221.162058"};
+
+  let tickP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    tickP = coinut.getTick();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getTick).to.exist;
+    expect(coinut.getTick).to.be.a('function');
+  });
+
+  it('should return an array of Tick data', () => {
+    return expect(tickP).to.eventually.deep.equal(mockResponseData);
+  });
+});
+
+describe('Coinut.getOrderbook', () => {
+  const mockResponseData = {
+  "ask":[],
+  "bid":[
+      {
+      "amount":10,
+      "price":"0.10000000"
+      },
+      {
+      "amount":120,
+      "price":"0.00300000"
+      },
+      {
+      "amount":20,
+      "price":"0.00100000"
+      }
+      ]
+    }
+  let orderbookP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    orderbookP = coinut.getOrderbook();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getOrderbook).to.exist;
+    expect(coinut.getOrderbook).to.be.a('function');
+  });
+
+  it('should return an array of Tick data', () => {
+    return expect(orderbookP).to.eventually.deep.equal(mockResponseData);
+  });
+});
 
 });
