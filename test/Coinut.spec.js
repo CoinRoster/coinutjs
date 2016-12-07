@@ -213,5 +213,34 @@ describe('Coinut', () => {
    });
 });
 
+describe('Coinut.getAssets', () => {
+  const mockResponseData = ["BTCUSD", "BTCCNY", "BTCEUR"];
+
+  let assetsP;
+  let rpStub;
+
+  beforeEach(() => {
+    // return stubbed response instead of actual POST call to Coinut
+    rpStub = sinon.stub(rp, 'post');
+    rpStub.returns(Promise.resolve(JSON.stringify(mockResponseData)));
+
+    // make API request call
+    assetsP = coinut.getAssets();
+  });
+
+  afterEach(() => {
+    // restore stubbed function
+    rp.post.restore();
+  });
+
+  it('should be a function', () => {
+    expect(coinut.getAssets).to.exist;
+    expect(coinut.getAssets).to.be.a('function');
+  });
+
+  it('should return an array of Asset Types', () => {
+    return expect(assetsP).to.eventually.deep.equal(mockResponseData);
+  });
+});
 
 });
